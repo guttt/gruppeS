@@ -59,16 +59,16 @@ public class OutgoingTraffic extends Thread implements SendMessageListener, Stop
 	{
 		while (!stop)
 		{
-			if (this.highPriority.size() > 0)
+			try
 			{
-				try
+				if (this.highPriority.size() > 0)
 				{
 					out.writeObject( this.highPriority.poll() );
 				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
 			}
 		}
 	}
